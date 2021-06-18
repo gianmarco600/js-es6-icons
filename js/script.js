@@ -98,10 +98,18 @@ const icons = [
   ];
 
 
+document.getElementById('filtra').addEventListener('click', set);
 
+
+function set(){
+    
+    send(filtra());
+
+}
 
 // funzione per filtrare l'array
 // ritorna l'array su cuoi poi dobbiamo lavorare
+
 
 
 document.getElementById('print').innerHTML = '';
@@ -134,6 +142,7 @@ send(filtra());
 
 // funzione per stampare gli elementi
 function send(array){
+    document.getElementById('print').innerHTML = '';
     array.forEach((element) =>{
         let color = colorType(element);
         print(element , color);
@@ -144,7 +153,7 @@ function send(array){
 function colorType(elem){
     let colore = '';
     
-    if (elem.type == 'animali'){
+    if (elem.type == 'animal'){
         colore = '#AF621D'
         return colore;
     }
