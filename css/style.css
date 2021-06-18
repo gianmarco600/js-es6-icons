@@ -4,8 +4,8 @@ body{
 
 .ico{
     font-size: 50px;
-    min-width: 18%;
-    max-width: 18%;
+    min-width: calc(100% / 5) ;
+    max-width: calc(100% / 5) ;
 }
 
 .box{

@@ -97,14 +97,28 @@ const icons = [
     },
   ];
 
+const type = [];
+getOptions();
 
-document.getElementById('filtra').addEventListener('click', set);
 
+
+document.getElementById('icon-select').addEventListener('change', set);
+
+function getOptions(){
+    icons.forEach((element) =>{
+        let typeElem = element.type;
+        if (!type.includes(typeElem)){
+            type.push(typeElem);
+        }
+    });
+    for (let i = 0; i < type.length; i++){
+        document.getElementById('icon-select').innerHTML+=`<option value="${type[i]}">${type[i]}</option>`;
+    }
+}
+// console.log(type);
 
 function set(){
-    
     send(filtra());
-
 }
 
 // funzione per filtrare l'array
@@ -145,31 +159,29 @@ function send(array){
     document.getElementById('print').innerHTML = '';
     array.forEach((element) =>{
         let color = colorType(element);
-        print(element , color);
+        assemble(element , color);
     });
 }
 
 // funzione per cambiare il colore delle icone a seconda del tipo
 function colorType(elem){
-    let colore = '';
+    let colore = '#AF621D';
     
-    if (elem.type == 'animal'){
-        colore = '#AF621D'
-        return colore;
-    }
-    else if (elem.type == 'user'){
+    
+    if (elem.type == 'user'){
         colore = '#022787'
-        return colore;
+        
     }
     else if (elem.type == 'vegetable'){
         colore = '#00BC1C'
-        return colore;
+        
     }
+    return colore;
 }
 
 
 // funzione per costruire l'output che poi verra passato al html
-function print(elem , colore){
+function assemble(elem , colore){
     let nome = elem.name.toUpperCase();
     document.getElementById('print').innerHTML += `<div id="output" class="col ico">
     <div class="box py-4">
