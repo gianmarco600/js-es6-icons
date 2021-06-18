@@ -96,3 +96,15 @@ const icons = [
       family: 'fas',
     },
   ];
+
+
+document.getElementById('print').innerHTML = '';
+
+icons.forEach((element) =>{
+    document.getElementById('print').innerHTML += `<div id="output" class="col ico">
+    <div class="box">
+        <i class="${element.family} ${element.prefix}${element.name}"></i>
+        <div class="text-center name">${element.name}</div>
+    </div>
+</div>`
+});
