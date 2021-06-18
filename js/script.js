@@ -98,15 +98,49 @@ const icons = [
   ];
 
 
+
+
+// funzione per filtrare l'array
+// ritorna l'array su cuoi poi dobbiamo lavorare
+
+
 document.getElementById('print').innerHTML = '';
 
-icons.forEach((element) =>{
-    let color = colorType(element);
-    print(element , color);
-});
 
-const ordine = document.getElementById('print').value;
+function filtra(){
+    let iconsFiltered = [];
+    let ordine = document.getElementById('icon-select').value;
+    console.log(ordine);
+    if (ordine == 'all'){
+       
+        return icons;
+    }
+    for (let i = 0; i < icons.length; i++){
+        if (icons[i].type == ordine){
+            iconsFiltered.push(icons[i])
+        }
+    }
+   
+    return iconsFiltered;
+    
+}
 
+send(filtra()); 
+
+
+
+
+
+
+// funzione per stampare gli elementi
+function send(array){
+    array.forEach((element) =>{
+        let color = colorType(element);
+        print(element , color);
+    });
+}
+
+// funzione per cambiare il colore delle icone a seconda del tipo
 function colorType(elem){
     let colore = '';
     
@@ -124,6 +158,8 @@ function colorType(elem){
     }
 }
 
+
+// funzione per costruire l'output che poi verra passato al html
 function print(elem , colore){
     let nome = elem.name.toUpperCase();
     document.getElementById('print').innerHTML += `<div id="output" class="col ico">
@@ -131,5 +167,5 @@ function print(elem , colore){
         <i class="${elem.family} ${elem.prefix}${elem.name}" style="color:${colore} "></i>
         <div class="text-center name">${nome}</div>
     </div>
-</div>`
+</div>`;
 }
